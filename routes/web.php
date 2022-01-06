@@ -16,3 +16,27 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+Route::middleware('auth')->prefix('user-manager')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('user-manager.index');
+    });
+
+    Route::get('/users', function(){
+        return view('user-manager.users');
+    });
+
+    Route::get('/roles', function(){
+        return view('user-manager.roles');
+    });
+
+    Route::get('/permissions', function(){
+        return view('user-manager.permissions');
+    });
+});
+
+require __DIR__.'/auth.php';
