@@ -4,14 +4,16 @@
                 Roles
     </div>
     <div>
+      @can('add role')
         <button 
         x-on:click="window.livewire.emitTo('add-new-role-component','showModal')"
           class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                     Add New Role <span class="ml-2" aria-hidden="true">+</span>
         </button>
+      @endcan
     </div>
   </div>
-
+  @can('view roles')
 <div class="w-full overflow-hidden rounded-lg shadow-xs">
               <div class="w-full overflow-x-auto">
               <!-- Role search box -->
@@ -65,11 +67,17 @@
                           </div>
                         </td>
                         <td class="px-4 py-3 text-sm">
+                          @can('view role')
                           <i x-on:click="window.livewire.emitTo('show-role-component','showModal', {{$role}})" class="fas fa-eye text-indigo-500 px-1 cursor-pointer"></i>
+                          @endcan
+                          @can('edit role')
                           <i x-on:click="window.livewire.emitTo('edit-role-component','showModal', {{$role}})" class="fa fa-pencil text-indigo-500 px-1 cursor-pointer"></i>
+                          @endcan
+                          @can('delete role')
                           <i class="fas fa-trash text-indigo-500 px-1 cursor-pointer"
                           x-data={} 
                           x-on:click="window.livewire.emitTo('delete-modal-component','showModal', 'Spatie\\Permission\\Models\\Role', {{$role->id}}, 'Delete Role', 'Are you sure you want to delete role {{$role->name}}')"></i>
+                          @endcan
                         </td>
                       </tr>
                       @empty
@@ -92,18 +100,27 @@
                   {{$roles->links()}}
               </div>
 </div>
+@endcan
 </div>
+@can('add role')
 <div wire:key="add-role">
   <livewire:add-new-role-component>
 </div>
+@endcan
+@can('delete role')
 <div wire:key="delete-modal">
   <livewire:delete-modal-component>
 </div>
+@endcan
+@can('edit role')
 <div wire:key="edit-role">
   <livewire:edit-role-component>
 </div>
+@endcan
+@can('view role')
 <div wire:key="show-role">
   <livewire:show-role-component>
 </div>
+@endcan
 
 

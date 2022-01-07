@@ -4,13 +4,16 @@
                 Users
     </div>
     <div>
+      @can('add user')
         <button 
         x-on:click="window.livewire.emitTo('add-new-user-component','showModal')"
           class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                     Add New User <span class="ml-2" aria-hidden="true">+</span>
         </button>
+      @endcan
     </div>
   </div>
+  @can('view users')
 <div class="w-full overflow-hidden rounded-lg shadow-xs">
               <div class="w-full overflow-x-auto">
               <!-- User search box -->
@@ -42,6 +45,7 @@
                 </div>
               </div>
               <!--User Search box ends --> 
+              
                 <table class="w-full whitespace-no-wrap">
                   <thead>
                     <tr
@@ -78,14 +82,22 @@
                           @endforeach
                         </td>
                         <td class="px-4 py-3 text-sm">
+                          @can('view user')
                           <i x-on:click="window.livewire.emitTo('show-user-component','showModal', {{$user}})" class="fas fa-eye text-indigo-500 px-1 cursor-pointer"></i>
+                          @endcan
+                          @can('edit user')
                           <i x-on:click="window.livewire.emitTo('edit-user-component','showModal', {{$user}})" class="fa fa-pencil text-indigo-500 px-1 cursor-pointer"></i>
+                          @endcan
+                          @can('manage user roles')
                           <i class="fas fa-user-tag text-indigo-500 px-1 cursor-pointer"
                           x-data={} 
                           x-on:click="window.livewire.emitTo('manage-user-roles-component','showModal', {{$user}})"></i>
+                          @endcan
+                          @can('delete user')
                           <i class="fas fa-trash text-indigo-500 px-1 cursor-pointer"
                           x-data={} 
                           x-on:click="window.livewire.emitTo('delete-modal-component','showModal', 'App\\Models\\User', {{$user->id}}, 'Delete User', 'Are you sure you want to delete user {{$user->name}}')"></i>
+                          @endcan
                         </td>
                       </tr>
                       @empty
@@ -108,20 +120,33 @@
                  {{$users->links()}}
               </div>
 </div>
+@else
+<p> You don't have permission to view users </p>
+@endcan
 </div>
+@can('view user')
 <div wire:key="show-user">
   <livewire:show-user-component>
 </div>
+@endcan
+@can('add user')
 <div wire:key="add-user">
   <livewire:add-new-user-component>
 </div>
+@endcan
+@can('edit user')
 <div wire:key="edit-user">
   <livewire:edit-user-component>
 </div>
+@endcan
+@can('manage user role')
 <div wire:key="manage-role">
   <livewire:manage-user-roles-component>
 </div>
+@endcan
+@can('delete user')
 <div wire:key="delete-modal">
   <livewire:delete-modal-component>
 </div>
+@endcan
 
