@@ -1,7 +1,7 @@
 <div>
   <div class="flex justify-between my-6 mx-3">
     <div class="text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                Permission
+                Permissions
     </div>
     <div>
     @can('add permission')

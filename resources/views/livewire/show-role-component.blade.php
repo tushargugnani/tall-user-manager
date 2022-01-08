@@ -28,6 +28,7 @@
             Permissions Attached with this role
           </div>
           @if(!empty($permissions))
+           <div class="flex flex-wrap">
             @forelse($permissions as $permission)
             <span class="px-2 py-1 mr-1 my-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
                 {{$permission->name}}
@@ -35,6 +36,7 @@
             @empty
                 <em>none</em>
             @endforelse
+            </div>
            @endif
         </div>
         
