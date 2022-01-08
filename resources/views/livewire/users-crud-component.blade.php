@@ -139,7 +139,7 @@
   <livewire:edit-user-component>
 </div>
 @endcan
-@can('manage user role')
+@can('manage user roles')
 <div wire:key="manage-role">
   <livewire:manage-user-roles-component>
 </div>
