@@ -45,7 +45,7 @@
                        <option id="{{$permission->name}}">{{$permission->name}}</option>
                    @endforeach
                    </select>
-                   <p class="text-gray-600 text-xs italic">Use this to directly assign permssion to the user.</p>
+                   <p class="text-gray-600 text-xs italic dark:text-gray-400 mt-2">Use this to directly assign permssions to the user.</p>
                 </div>
               </div>
         </div>
