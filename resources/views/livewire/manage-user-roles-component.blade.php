@@ -27,27 +27,29 @@
           <div class="mt-2 w-full">
             <div class="flex-grow flex-wrap -mx-3 my-6">
               <div class="w-full px-3" wire:ignore>
-                  <label class="block uppercase tracking-wide text-gray-700 dark:text-gray-300 text-xs font-bold mb-2" for="roleSelect">
-                    Attach Roles
-                  </label>
-                  <select style="width: 100%" class="select select-bordered w-full select2" id="roleSelect" multiple="multiple" >
-                   @foreach($allRoles as $role)
-                       <option id="{{$role->name}}">{{$role->name}}</option>
-                   @endforeach
-                   </select>
-                </div>
+                <label class="block uppercase tracking-wide text-gray-700 dark:text-gray-300 text-xs font-bold mb-2" for="roleSelect">
+                  Attach Roles
+                </label>
+                <select style="width: 100%" class="select select-bordered w-full select2" id="roleSelect" name="selectedRoles[]" multiple="multiple">
+                  @foreach($allRoles as $role)
+                  <option value="{{$role->name}}">{{$role->name}}</option>
+				  <!-- <option value="{{$role->name}}">{{ __('roles.' . $role->name) }}</option> -->
+                  @endforeach
+                </select>
               </div>
-              <div class="flex-grow flex-wrap -mx-3 my-6">
-                <div class="w-full px-3" wire:ignore>
-                  <label class="block uppercase tracking-wide text-gray-700 dark:text-gray-300 text-xs font-bold mb-2" for="permissionSelect">
-                    Attach Direct Permissions
-                  </label>
-                  <select style="width: 100%" class="select select-bordered w-full select2" id="permissionSelect" multiple="multiple" >
-                   @foreach($allPermissions as $permission)
-                       <option id="{{$permission->name}}">{{$permission->name}}</option>
-                   @endforeach
-                   </select>
-                   <p class="text-gray-600 text-xs italic dark:text-gray-400 mt-2">Use this to directly assign permssions to the user.</p>
+            </div>
+            <div class="flex-grow flex-wrap -mx-3 my-6">
+              <div class="w-full px-3" wire:ignore>
+                <label class="block uppercase tracking-wide text-gray-700 dark:text-gray-300 text-xs font-bold mb-2" for="permissionSelect">
+                  Attach Direct Permissions
+                </label>
+                <select style="width: 100%" class="select select-bordered w-full select2" id="permissionSelect" name="selectedPermissions[]" multiple="multiple">
+                  @foreach($allPermissions as $permission)
+                  <option value="{{$permission->name}}">{{$permission->name}}</option>
+				  <!-- <option value="{{$permission->name}}">{{ __('permissions.' . $permission->name) }}</option> -->
+                  @endforeach
+                </select>
+                <p class="text-gray-600 text-xs italic dark:text-gray-400 mt-2">Use this to directly assign permssions to the user.</p>
               </div>
             </div>
           </div>
